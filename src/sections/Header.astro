@@ -1,0 +1,133 @@
+---
+import type { HeaderData } from "@/config/landing.interface";
+
+interface Props {
+  data: HeaderData;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="navbar" id="navbar">
+  <!-- <a href="/" class="logo"><Image src={SquareLogo} alt="logo" /></a> -->
+  <div class="nav-links">
+    {
+      data.links.map((item) => (
+        <a class="nav-item" href={item.href} data-nav-item>
+          {item.label}
+        </a>
+      ))
+    }
+  </div>
+</div>
+<div class="d"></div>
+
+<style>
+  .d {
+    height: 200vh;
+  }
+  .navbar {
+    position: fixed;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    transition: bottom 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .navbar.visible {
+    bottom: 20px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.4rem;
+    border-radius: 4px;
+  }
+  .nav-item {
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--white-color);
+    padding: 0.4rem;
+    border-radius: 5px;
+    border: 0.5px solid rgba(85, 85, 85, 0.755);
+  }
+  .nav-item.active {
+    color: var(--primary-color);
+  }
+  @media (max-width: 840px) {
+    .navbar {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Navbar visibility script
+  window.onscroll = function () {
+    var navbar = document.getElementById("navbar");
+    var isAtBottom =
+      window.innerHeight + window.scrollY >= document.body.offsetHeight;
+
+    if (
+      document.body.scrollTop > 80 ||
+      document.documentElement.scrollTop > 80
+    ) {
+      if (!isAtBottom) {
+        navbar.classList.add("visible");
+      } else {
+        navbar.classList.remove("visible");
+      }
+    } else {
+      navbar.classList.remove("visible");
+    }
+  };
+
+  // Active nav item script
+  document.addEventListener("DOMContentLoaded", () => {
+    const navItems = document.querySelectorAll("[data-nav-item]");
+    const currentPath = window.location.pathname;
+    const firstPathSegment = "/" + currentPath.split("/")[1];
+
+    function setActiveNavItem() {
+      navItems.forEach((item) => {
+        const href = item.getAttribute("href");
+        if (
+          href === firstPathSegment ||
+          (href === "/" && firstPathSegment === "/")
+        ) {
+          item.classList.add("active");
+        } else {
+          item.classList.remove("active");
+        }
+      });
+    }
+
+    setActiveNavItem();
+
+    navItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        const href = item.getAttribute("href");
+        if (href === "#") {
+          e.preventDefault();
+        } else {
+          navItems.forEach((navItem) => navItem.classList.remove("active"));
+          item.classList.add("active");
+        }
+      });
+    });
+  });
+</script>

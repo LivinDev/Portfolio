@@ -1,51 +1,73 @@
 ---
+import type { Meta } from "@/config/landing.interface";
 interface Props {
-	title: string;
+  meta: Meta;
 }
-
-const { title } = Astro.props;
+const { meta } = Astro.props;
+const ldJson = JSON.stringify(meta.ldJson);
+import "../styles/global.scss";
+import { getLandingData } from "@/services/data.service";
+import Header from "@/sections/Header.astro";
+import MobHeader from "@/sections/MobHeader.astro";
+const data = await getLandingData();
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset={meta.charset ?? "UTF-8"} />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={import.meta.env.SITE} />
+    <script type="application/ld+json" set:html={ldJson} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{meta.title}</title>
+  </head>
+  <body>
+    <div class="header-web">
+      <Header data={data.headerData} />
+    </div>
+    <div class="header-mob">
+      <MobHeader data={data.headerData} />
+    </div>
+
+    <slot />
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+
+<style>
+  .header-mob {
+    display: none;
+  }
+  @media (max-width: 480px) {
+    .header-web {
+      display: none;
+    }
+    .top-header {
+      display: none;
+    }
+    .header-mob {
+      display: flex;
+      width: 100vw;
+    }
+  }
+  .whatsapp {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 100;
+  }
+  @media (max-width: 950px) {
+    .header-web {
+      display: none;
+    }
+    .header-mob {
+      display: flex;
+      width: 100vw;
+    }
+    .top-header {
+      display: none;
+    }
+  }
 </style>

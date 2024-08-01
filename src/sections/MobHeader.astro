@@ -1,0 +1,146 @@
+---
+import { Image } from "astro:assets";
+import Menu from "../assets/svg/menu.svg";
+// import Logo from "../assets/svg/icon-logo.svg";
+import type { HeaderData } from "@/config/landing.interface";
+
+interface Props {
+  data: HeaderData;
+}
+
+const { data } = Astro.props;
+---
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f8f8;
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .header.hidden {
+    transform: translateY(-100%);
+  }
+
+  .left-button {
+    padding: 0.5rem 1rem;
+    background-color: #ffc600;
+    color: rgb(0, 0, 0);
+    border: none;
+    text-decoration: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .hamburger {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    padding: 5rem 1rem 1rem 1rem;
+  }
+
+  .menu.active {
+    transform: translateX(0);
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      margin: 1rem 0;
+      text-align: left;
+    }
+  }
+
+  .close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+</style>
+<header class="header">
+  <a href="/" class="left-button">Contact</a>
+  <!-- <div class="logo"><Image height={25} src={Logo} alt="" /></div> -->
+  <div class="hamburger">
+    <Image height={40} src={Menu} alt="" />
+  </div>
+</header>
+
+<nav class="menu">
+  <button class="close-menu">&times;</button>
+  <div class="nav-item">
+    {data.links.map((item) => <a href={item.href}>{item.label}</a>)}
+  </div>
+  <!-- <a href="/">Home</a>
+  <a href="#">About</a>
+  <a href="/blog">Blog</a>
+  <a href="#">Contact</a>
+  <a href="/pricing">Pricing</a> -->
+</nav>
+
+<script is:inline>
+  const hamburger = document.querySelector(".hamburger");
+  const menu = document.querySelector(".menu");
+  const closeMenu = document.querySelector(".close-menu");
+  const header = document.querySelector(".header");
+  let lastScrollTop = 0;
+
+  hamburger.addEventListener("click", () => {
+    menu.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+
+  closeMenu.addEventListener("click", () => {
+    menu.classList.remove("active");
+    document.body.style.overflow = "auto";
+  });
+
+  window.addEventListener("scroll", () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      // Scrolling down
+      header.classList.add("hidden");
+    } else {
+      // Scrolling up
+      header.classList.remove("hidden");
+    }
+    lastScrollTop = scrollTop;
+  });
+</script>
