@@ -1,0 +1,178 @@
+---
+import { Image } from "astro:assets";
+import ImageHero from "../assets/images/profile.png";
+---
+
+<section class="hero">
+  <div class="inner-container">
+    <div class="hero-content">
+      <h1>Build Your Awesome Platform</h1>
+      <p>
+        Enver studio is a digital studio that offers several services such as
+        UI/UX Design to developers, we will provide the best service for those
+        of you who use our services.
+      </p>
+      <a href="#services" class="cta-button">Our Services</a>
+    </div>
+    <div class="hero-image">
+      <div class="image-frame">
+        <Image src={ImageHero} alt="Enthusiastic developer" />
+      </div>
+    </div>
+    <div class="decorative-elements">
+      <span class="circle"></span>
+      <span class="plus">+</span>
+      <span class="squiggle"></span>
+      <span class="triangle"></span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: #1a1a2e;
+    color: white;
+    overflow: hidden;
+    padding-top: calc(2rem + 50px);
+  }
+
+  .inner-container {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    max-width: 1330px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    flex: 1;
+    max-width: 50%;
+    z-index: 2;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #4a47a3;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+  }
+
+  .hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .image-frame {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: rotate(-5deg);
+  }
+
+  .image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .decorative-elements span {
+    position: absolute;
+    opacity: 0.5;
+  }
+
+  .circle {
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 50%;
+    top: 10%;
+    left: 5%;
+  }
+
+  .plus {
+    font-size: 40px;
+    right: 10%;
+    bottom: 20%;
+  }
+
+  .squiggle {
+    width: 100px;
+    height: 20px;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 5px,
+      white 5px,
+      white 10px
+    );
+    top: 15%;
+    right: 15%;
+    transform: rotate(30deg);
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 40px solid white;
+    left: 15%;
+    bottom: 10%;
+  }
+
+  @media (max-width: 768px) {
+    .inner-container {
+      flex-direction: column;
+      text-align: left;
+      padding: 2rem 1rem;
+    }
+
+    .hero-content,
+    .hero-image {
+      max-width: 100%;
+    }
+
+    .hero-content {
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .image-frame {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      transform: none;
+      border-radius: 10px;
+    }
+
+    .decorative-elements {
+      display: none;
+    }
+  }
+</style>

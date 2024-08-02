@@ -1,0 +1,153 @@
+---
+import { Image } from "astro:assets";
+import Logo from "../assets/svg/logo.svg"; // Assume you have a Logo component
+---
+
+<section class="contact-section">
+  <div class="contact-content">
+    <h2>Contact us for the service you want to use</h2>
+    <a href="#contact" class="contact-button">Contact us</a>
+  </div>
+  <footer>
+    <div class="footer-content">
+      <Image src={Logo} alt="" />
+      <nav class="footer-nav">
+        <a href="#support">Support</a>
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Terms and Conditions</a>
+      </nav>
+      <p class="copyright">© 2024 Enver, All Rights Reserved</p>
+    </div>
+  </footer>
+  <div class="decorative-elements">
+    <span class="circle"></span>
+    <span class="plus">+</span>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    background-color: #1a1a2e;
+    color: white;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-content {
+    max-width: 1330px;
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    max-width: 60%;
+  }
+
+  .contact-button {
+    background-color: #4a47a3;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .contact-button:hover {
+    background-color: #3a3882;
+  }
+
+  footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer-nav a:hover {
+    opacity: 1;
+  }
+
+  .copyright {
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+
+  .decorative-elements span {
+    position: absolute;
+    opacity: 0.2;
+  }
+
+  .circle {
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 50%;
+    left: 5%;
+    top: 20%;
+  }
+
+  .plus {
+    font-size: 3rem;
+    right: 5%;
+    top: 10%;
+  }
+
+  @media (max-width: 768px) {
+    .contact-section {
+      padding: 3rem 1rem;
+    }
+
+    .contact-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      max-width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-nav {
+      margin: 1.5rem 0;
+    }
+
+    .footer-nav a {
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .copyright {
+      margin-top: 1rem;
+    }
+
+    .decorative-elements {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,163 @@
+---
+const services = [
+  {
+    icon: "💻",
+    title: "Development",
+    description: "Create a platform with the best and coolest quality from us.",
+  },
+  {
+    icon: "🎨",
+    title: "UI/UX Designer",
+    description:
+      "We provide UI/UX Design services, and of course with the best quality",
+  },
+  {
+    icon: "🖌️",
+    title: "Graphik Designer",
+    description: "We provide Graphic Design services, with the best designers",
+  },
+  {
+    icon: "🎬",
+    title: "Motion Graphik",
+    description: "Create a platform with the best and coolest quality from us.",
+  },
+  {
+    icon: "📷",
+    title: "Photography",
+    description:
+      "We provide Photography services, and of course with the best quality",
+  },
+  {
+    icon: "🎥",
+    title: "Videography",
+    description: "Create a platform with the best and coolest quality from us.",
+  },
+];
+---
+
+<section class="services">
+  <div class="services-container">
+    <h2 class="services-title">The Service We Provide For You</h2>
+    <div class="services-grid">
+      {
+        services.map((service) => (
+          <div class="service-item">
+            <div class="service-icon">{service.icon}</div>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="decorative-elements">
+    <span class="triangle"></span>
+    <span class="cross"></span>
+  </div>
+</section>
+
+<style>
+  .services {
+    background-color: #1a1a2e;
+    color: white;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-container {
+    max-width: 1330px;
+    margin: 0 auto;
+  }
+
+  .services-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .service-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-item p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .decorative-elements span {
+    position: absolute;
+    opacity: 0.2;
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid white;
+    top: 10%;
+    left: 5%;
+    transform: rotate(45deg);
+  }
+
+  .cross {
+    font-size: 3rem;
+    top: 5%;
+    right: 5%;
+  }
+
+  @media (max-width: 768px) {
+    .services {
+      padding: 2rem 1rem;
+    }
+
+    .services-title {
+      font-size: 2rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-item {
+      padding: 1rem;
+    }
+
+    .service-icon {
+      font-size: 2rem;
+    }
+
+    .service-item h3 {
+      font-size: 1.1rem;
+    }
+
+    .service-item p {
+      font-size: 0.8rem;
+    }
+  }
+</style>

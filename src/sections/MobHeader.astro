@@ -23,6 +23,7 @@ const { data } = Astro.props;
     position: fixed;
     top: 0;
     left: 0;
+    height: 60px;
     transition: transform 0.3s ease-in-out;
   }
 
@@ -108,11 +109,6 @@ const { data } = Astro.props;
   <div class="nav-item">
     {data.links.map((item) => <a href={item.href}>{item.label}</a>)}
   </div>
-  <!-- <a href="/">Home</a>
-  <a href="#">About</a>
-  <a href="/blog">Blog</a>
-  <a href="#">Contact</a>
-  <a href="/pricing">Pricing</a> -->
 </nav>
 
 <script is:inline>

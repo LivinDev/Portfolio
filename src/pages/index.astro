@@ -1,9 +1,18 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Contact from "@/sections/Contact.astro";
 import Header from "@/sections/Header.astro";
+import HeroSection from "@/sections/HeroSection.astro";
+import Skills from "@/sections/Skills.astro";
+import WhyMe from "@/sections/WhyMe.astro";
 import { getLandingData } from "@/services/data.service";
 
 const data = await getLandingData();
 ---
 
-<Layout meta={data.meta} />
+<Layout meta={data.meta}>
+  <HeroSection />
+  <WhyMe />
+  <Skills />
+  <Contact />
+</Layout>

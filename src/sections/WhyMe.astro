@@ -1,0 +1,103 @@
+---
+import { Image } from "astro:assets";
+import teamImage from "../assets/images/team.jpg";
+---
+
+<section class="why-enver">
+  <div class="content">
+    <h2>Why Enver Is The Best Choice?</h2>
+    <p>
+      See how our team collaborates to deliver exceptional results for our
+      clients.
+    </p>
+  </div>
+  <div class="image-container">
+    <Image src={teamImage} alt="Team working together" class="team-image" />
+    <div class="image-overlay">
+      <span class="view-icon">👁️</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-enver {
+    background-color: #1a1a2e;
+    color: white;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .content {
+    max-width: 1300px;
+    padding: 2rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .team-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(74, 71, 163, 0.7);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .view-icon {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .why-enver {
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .image-overlay {
+      width: 60px;
+      height: 60px;
+    }
+
+    .view-icon {
+      font-size: 1.5rem;
+    }
+  }
+</style>
