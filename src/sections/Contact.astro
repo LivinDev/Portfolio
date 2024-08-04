@@ -1,27 +1,67 @@
 ---
 import { Image } from "astro:assets";
-import Logo from "../assets/svg/logo.svg"; // Assume you have a Logo component
+import Logo from "../assets/svg/logo.svg";
 ---
 
 <section class="contact-section">
-  <div class="contact-content">
-    <h2>Contact us for the service you want to use</h2>
-    <a href="#contact" class="contact-button">Contact us</a>
-  </div>
-  <footer>
-    <div class="footer-content">
-      <Image src={Logo} alt="" />
-      <nav class="footer-nav">
-        <a href="#support">Support</a>
-        <a href="#privacy">Privacy Policy</a>
-        <a href="#terms">Terms and Conditions</a>
-      </nav>
-      <p class="copyright">© 2024 Enver, All Rights Reserved</p>
+  <div class="inner-container">
+    <div class="contact-content">
+      <h2>Contact us for the service you want to use</h2>
+      <a href="#" class="contact-button" id="contactToggle">Contact us</a>
     </div>
-  </footer>
-  <div class="decorative-elements">
-    <span class="circle"></span>
-    <span class="plus">+</span>
+    <div class="contact-container" id="contactForm">
+      <h2 class="contact-title">Contact Us</h2>
+      <form
+        action="https://formbold.com/s/oJV22"
+        method="POST"
+        class="contact-form"
+      >
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Full Name"
+          name="name"
+          required
+        />
+        <input
+          type="email"
+          class="form-input"
+          placeholder="Email"
+          name="email"
+          required
+        />
+        <input
+          type="tel"
+          class="form-input"
+          placeholder="Phone Number"
+          name="phone"
+          required
+        />
+        <input
+          type="tel"
+          class="form-input"
+          placeholder="WhatsApp Number"
+          name="whatsapp"
+        />
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Subject"
+          name="subject"
+          required
+        />
+        <textarea
+          name="message"
+          class="form-input form-textarea"
+          placeholder="Type your message"
+          required></textarea>
+        <button type="submit" class="submit-button">Send Message</button>
+      </form>
+    </div>
+    <div class="decorative-elements">
+      <span class="circle"></span>
+      <span class="plus">+</span>
+    </div>
   </div>
 </section>
 
@@ -33,10 +73,12 @@ import Logo from "../assets/svg/logo.svg"; // Assume you have a Logo component
     position: relative;
     overflow: hidden;
   }
-
-  .contact-content {
+  .inner-container {
     max-width: 1330px;
     margin: 0 auto 2rem;
+  }
+
+  .contact-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -62,36 +104,6 @@ import Logo from "../assets/svg/logo.svg"; // Assume you have a Logo component
     background-color: #3a3882;
   }
 
-  footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 2rem;
-  }
-
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-  }
-
-  .footer-nav a:hover {
-    opacity: 1;
-  }
-
-  .copyright {
-    opacity: 0.7;
-    font-size: 0.9rem;
-  }
-
   .decorative-elements span {
     position: absolute;
     opacity: 0.2;
@@ -112,6 +124,71 @@ import Logo from "../assets/svg/logo.svg"; // Assume you have a Logo component
     top: 10%;
   }
 
+  .contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    opacity: 0.7;
+
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.5s ease-out;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .contact-container.open {
+    max-height: 1000px;
+    padding: 20px;
+  }
+
+  .contact-title {
+    text-align: center;
+    color: #333;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 15px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .form-textarea {
+    height: 150px;
+  }
+
+  .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 480px) {
+    .contact-container {
+      /* padding: 10px; */
+    }
+    .form-input,
+    .submit-button {
+      font-size: 14px;
+    }
+  }
+
   @media (max-width: 768px) {
     .contact-section {
       padding: 3rem 1rem;
@@ -128,26 +205,24 @@ import Logo from "../assets/svg/logo.svg"; // Assume you have a Logo component
       margin-bottom: 2rem;
     }
 
-    .footer-content {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .footer-nav {
-      margin: 1.5rem 0;
-    }
-
-    .footer-nav a {
-      display: block;
-      margin: 0.5rem 0;
-    }
-
-    .copyright {
-      margin-top: 1rem;
-    }
-
     .decorative-elements {
       display: none;
     }
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const contactToggle = document.getElementById("contactToggle");
+    const contactForm = document.getElementById("contactForm");
+
+    contactToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      contactForm.classList.toggle("open");
+
+      if (contactForm.classList.contains("open")) {
+        contactForm.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+</script>

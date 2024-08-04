@@ -9,6 +9,7 @@ import "../styles/global.scss";
 import { getLandingData } from "@/services/data.service";
 import Header from "@/sections/Header.astro";
 import MobHeader from "@/sections/MobHeader.astro";
+import Footer from "@/sections/Footer.astro";
 const data = await getLandingData();
 ---
 
@@ -33,6 +34,7 @@ const data = await getLandingData();
     </div>
 
     <slot />
+    <Footer />
   </body>
 </html>
 
